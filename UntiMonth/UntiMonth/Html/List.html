@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <link href="../Content/css/bootstrap.css" rel="stylesheet" />
+    <script src="../Content/js/bootstrap.js"></script>
+    <script src="../Content/jquery-3.1.1.js"></script>
+</head>
+<body>
+    <div style="width:700px;margin:0 auto">
+        <input id="Button1" type="button" value="我要请假" class="btn btn-group" style="background-color:#996600" onclick="location.href='AddLeave.html'"  />
+        <input id="Button1" type="button" value="维护请假类型" class="btn btn-group" style="background-color:#996600" onclick="location.href='AddType.html'" />
+        <table class="table table-bordered" >
+            <tr style="background-color:#cccccc">
+                <td><input id="CbkAll" type="checkbox" /></td>
+                <td>请假标题</td>
+                <td>请假人</td>
+                <td>请假天数</td>
+                <td>请假原因</td>
+                <td>请假类型</td>
+                <td>操作</td>
+            </tr>
+        </table>
+        <input id="Button1" type="button" value="批量删除" class="btn btn-primary" onclick="del()" />
+    </div>
+    
+</body>
+</html>
+<script>
+    $.ajax({
+        url: "../Ashx/List.ashx",
+        data: { id: "" },
+        dataType: "json",
+        success:function(data)
+        {
+            for (var i in data) {
+                var tr = '<tr >'
+                + '<td><input id="ck" name="ckItem" value="' + data[i].id + '" type="checkbox"  /></td>'
+                + '<td>' + data[i].lName + '</td>'
+                + '<td>' + data[i].lPeople + '</td>'
+                + '<td>' + data[i].lNum + '</td>'
+                + '<td>' + data[i].lYuanYin + '</td>'
+                + '<td>' + data[i].qjTypeName + '</td>'
+                + '<td><a href="#" onclick="upt(' + data[i].id + ')">修改</a></td>'
+                + '</tr>';
+                $("table").append(tr);
+            }
+            
+        }
+
+    })
+    $("#CbkAll").click(function () {
+        $("[name=ckItem]").prop("checked", $("#CbkAll").prop("checked"))
+    })
+    function del()
+    {
+        var ids = [];
+        $("[name=ckItem]:checked").each(function (data) {
+            ids.push($(this).val())
+        })
+        $.ajax({
+            url: "../Ashx/Del.ashx",
+            data: { id: ids.toString() },
+            success: function (data)
+            {
+                if (data>0) {
+                    alert("删除成功");
+                    $("[name=ckItem]:checked").each(function (data) {
+                        $(this).parent().parent().remove();
+                    })
+                }
+            }
+        })
+    }
+    function upt(id)
+    {
+        location.href = "Upt.html?id="  +id;
+    }
+</script>

@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <link href="../Content/css/bootstrap.css" rel="stylesheet" />
+    <script src="../Content/js/bootstrap.js"></script>
+    <script src="../Content/jquery-3.1.1.js"></script>
+</head>
+<body>
+    <table style="width:300px;height:500px;margin:0 auto">
+        <tr>
+            <td>请假标题</td>
+            <td>
+                <input id="txtBiao" type="text" />
+            </td>
+        </tr>
+        <tr>
+            <td>请假人</td>
+            <td>
+                <input id="txtPeople" type="text" />
+            </td>
+        </tr>
+        <tr>
+            <td>请假天数</td>
+            <td>
+                <input id="txtDay" type="text" />
+            </td>
+        </tr>
+        <tr>
+            <td>请假原因</td>
+            <td>
+                <input id="txtYuan" type="text" />
+            </td>
+        </tr>
+        <tr>
+            <td>请假类型</td>
+            <td>
+                <select id="Select1">
+                    <option value="请选择">请选择</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input id="Button1" type="button" value="保存" class="btn btn-primary"  />
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+<script>
+    $.ajax({
+        url: "../Ashx/XiaLa.ashx",
+        dataType: "json",
+        success:function(data)
+        {
+            $(data).each(function () {
+                var tr = '<option value="' + this.qjTypeid + '">' + this.qjTypeName + '</option>'
+                $("#Select1").append(tr);
+            })
+        }
+    })
+    $("#Button1").click(function () {
+        var o = {
+            lName: $("#txtBiao").val(),
+            lPeople: $("#txtPeople").val(),
+            lNum: $("#txtDay").val(),
+            lYuanYin:$("#txtYuan").val(),
+            lTypeid:$("#Select1").val()
+        }
+        $.ajax({
+            url: "../Ashx/AddLeave.ashx",
+            data: { obj: JSON.stringify(o) },
+            success:function(data)
+            {
+                if (data>0) {
+                    alert("添加成功");
+                    location.href = "List.html";
+                }
+            }
+        })
+
+    })
+</script>

@@ -1,0 +1,12 @@
+D:\学习\专业四\代码练习\Day20\UntiMonth\Model\bin\Debug\Model.dll
+D:\学习\专业四\代码练习\Day20\UntiMonth\Model\bin\Debug\Model.pdb
+D:\学习\专业四\代码练习\Day20\UntiMonth\Model\obj\Debug\Model.dll
+D:\学习\专业四\代码练习\Day20\UntiMonth\Model\obj\Debug\Model.pdb
+D:\学习\专业四\代码练习\Day20\UntiMonth\Model\obj\Debug\Model.csprojAssemblyReference.cache
+D:\学习\专业四\代码练习\Day20\UntiMonth\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
+D:\资料总结\Ajax项目总结\UntiMonth\Model\bin\Debug\Model.dll
+D:\资料总结\Ajax项目总结\UntiMonth\Model\bin\Debug\Model.pdb
+D:\资料总结\Ajax项目总结\UntiMonth\Model\obj\Debug\Model.csprojAssemblyReference.cache
+D:\资料总结\Ajax项目总结\UntiMonth\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
+D:\资料总结\Ajax项目总结\UntiMonth\Model\obj\Debug\Model.dll
+D:\资料总结\Ajax项目总结\UntiMonth\Model\obj\Debug\Model.pdb

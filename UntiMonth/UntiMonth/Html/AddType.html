@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <link href="../Content/css/bootstrap.css" rel="stylesheet" />
+    <script src="../Content/js/bootstrap.js"></script>
+    <script src="../Content/jquery-3.1.1.js"></script>
+    <script src="../Content/ueditor/ueditor.config.js"></script>
+    <script src="../Content/ueditor/ueditor.all.js"></script>
+    <script src="../Content/ueditor/lang/en/en.js"></script>>
+</head>
+<body>
+    <div style="width:700px;height:650px;margin:0 auto;border:solid 1px">
+        <h1>维护请假类型</h1>
+        <hr />
+        <table style="width:700px;height:400px;margin:0 auto;">
+            <tr>
+                <td>请假类型</td>
+                <td><input id="txtType" type="text" /></td>
+            </tr>
+            <tr>
+                <td>类型说明</td>
+                <td>
+                    <textarea id="TextArea1" rows="2" cols="20" style="width:400px;height:100px"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input id="btnSave" type="button" value="保存" class="btn btn-primary" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
+<script>
+    var ue = UE.getEditor("TextArea1");
+    $("#btnSave").click(function () {
+        var o = {
+            qjTypeName: $("#txtType").val(),
+            qjTypeSay: ue.getContentTxt()
+        }
+        $.ajax({
+            url: "../Ashx/AddType.ashx",
+            data: { obj: JSON.stringify(o) },
+            success:function(data)
+            {
+                if (data>0) {
+                    alert("添加成功");
+                    location.href = "List.html";
+                }
+            }
+        })
+
+    })
+    
+
+</script>
